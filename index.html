@@ -15,9 +15,9 @@
   </head>
   <body>
     <header>
-      <nav class="bg-[#15803D] flex flex-col items-center py-5">
+      <nav class=" bg-[#15803D] flex flex-col items-center">
         <div
-          class="space-y-5 md:flex md:justify-between md:items-center md:w-11/12 md:mx-auto text-white"
+          class=" space-y-5 md:flex md:justify-between md:items-center md:w-11/12 md:mx-auto text-white"
         >
           <div class="logo">
             <h1 class="text-2xl font-extrabold">Green Earth</h1>
@@ -51,13 +51,14 @@
         </div>
       </div>
     </header>
-    <main class="bg-[#F0FDF4]">
+    <main class="bg-[#F0FDF4] min-h-screen border-red-700">
       <h1 class="text-center text-3xl font-semibold py-5">Choose Your Trees</h1>
-      <div class=" flex w-11/12 space-x-3 mx-auto">
-        <div class="left hidden md:block w-2/12 ">
-          <h1>Categories</h1>
+      <div class=" flex flex-col gap-4 md:flex md:flex-row md:w-11/12 md:space-x-3 md:mx-auto">
+        <div class="left  w-2/12 ">
+          <h1 class="font-semibold text-lg mb-4 p-2">Categories</h1>
+          <p class="w-full mt-3 p-2 hover:bg-green-700 hover:text-white  rounded-lg transition">All Trees</p>
         </div>
-        <div class="middle grid  grid-cols-1  gap-4 md:grid md:grid-cols-3 md:gap-5 md:w-8/12 ">
+        <div class="middle grid  grid-cols-1  gap-4 md:grid md:grid-cols-3 md:gap-5 md:w-8/12 md:mx-auto">
 
           
           <div class="  w-full md:max-w-xs bg-white rounded-2xl shadow-md overflow-hidden p-4">
@@ -215,10 +216,67 @@
 
 
         </div>
-        <div class="right left hidden md:block w-2/12  bg-white border-lg">
-          <h1>Your Cart</h1>
+        <div class="right   md:w-2/12  bg-white border-lg">
+          <h1 class="font-semibold text-lg mb-4 p-2">Your Cart</h1>
         </div>
       </div>
+      <div class="About-the-Campaign mt-20 md:w-8/12 md:mx-auto">
+       <h1 class="text-3xl font-bold text-center pb-10 ">About the Campaign</h1>
+      <div class="md:flex md:gap-x-5 ">
+         <div class=" space-y-8  md:flex-1 mb-5 ">
+        <img src="./assets/about.png" alt=""  class="h-90 mx-auto">
+       </div>
+       <div class=" md:flex md:flex-col md: flex-1 px-5 space-y-5 md:justify-center md:items-center">
+        <p>Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
+        <ul class="list-disc px-20 ">
+          <li>Restoration of natural habitats</li>
+          <li>Improvement of air quality</li>
+          <li>Support for local communities</li>
+        </ul>
+       </div>
+      </div>
+      </div>
+<div class="our-imcept bg-[#CFF0DC] md:py-20 pb-20 ">
+  <h1 class="text-center text-3xl font-bold py-10">Our Impact</h1>
+  <div class=" space-y-5 md:flex md:flex-row md:gap-5 md:w-11/12 mx-auto">
+    <div class=" rounded-lg flex flex-col items-center justify-center h-50 bg-white w-11/12 mx-auto md:w-4/12">
+      <h1 class="text-2xl font-bold text-green-600 ">500K+</h1>
+      <p>Trees Planted</p>
+  </div>
+  <div class="rounded-lg flex flex-col items-center justify-center  h-50 bg-white w-11/12 mx-auto md:w-4/12">
+    <h1 class="text-2xl font-bold text-green-600 ">120+</h1>
+    <p>Communities Involved</p>
+  </div>
+  <div class="rounded-lg flex flex-col items-center justify-center  h-50 bg-white w-11/12 mx-auto md:w-4/12">
+    <h1 class="text-2xl font-bold text-green-600 ">30+</h1>
+    <p>Countries Reached</p>
+  </div>
+  </div>
+</div>
+
+
+<div class="pb-20 bg-green-800 md:py-20 ">
+  <h1 class="text-center text-3xl font-semibold py-10 text-white">Plant a Tree Today</h1>
+  <form action="" class="w-11/12 md:w-6/12 mx-auto p-5 md:p-10  bg-green-700 flex flex-col items-center justify-center gap-5">
+  <input type="text" placeholder="Your Name " class="input input-primary w-full" />
+  <input type="text" placeholder="Your Email Address" class="input input-primary w-full" />
+  <select class="select w-full">
+  <option disabled selected>number of Trees</option>
+   <option>Crimson</option>
+   <option>Amber</option>
+   <option>Velvet</option>
+</select>
+<button class="w-full mt-3 py-2 btn-warning btn text-white font-semibold rounded-full ">
+      donate now
+    </button>
+    
+</form>
+ 
+</div>
+
     </main>
+    <footer class="bg-green-900 h-20 flex justify-center items-center">
+      <p class="text-white text-center">© 2025 Green Earth. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
