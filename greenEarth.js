@@ -3,7 +3,12 @@ const catItems = document.getElementsByClassName("cat-items");
 const plantContainer = document.getElementById("plant-category");
 const cartContainer = document.getElementById("cart-container");
 const cartCount =document.getElementById("cart-count");
+const myModal5 =document.getElementById("my_modal_5")
+const modalContainer= document.getElementById("modal-container")
 let bookMarks=[];
+let modaL=[]
+
+
 
 const loading = document.getElementById("loading");
 
@@ -19,13 +24,16 @@ const loadCategory = () => {
     .then((res) => res.json())
     .then((data) => {
       const categories = data;
-      console.log(categories);
+
       showCategory(categories.categories);
+      modaL.push({ type: "categories", data: data.categories });
     })
     .finally(() => hideLoading());
 };
 const showCategory = (categories) => {
   categories.forEach((cat) => {
+    
+
     categoryName.innerHTML += `
   <p id="${cat.id}"class="cat-items w-full mt-3 p-2 hover:bg-green-700 hover:text-white rounded-lg transition">${cat.category_name}</p>  
   `;
@@ -40,6 +48,7 @@ const showCategory = (categories) => {
       categoryCard(e.target.id);
     }
   });
+   
 };
 const categoryCard = (Catid) => {
  showLoading();
@@ -47,6 +56,7 @@ const categoryCard = (Catid) => {
     .then((res) => res.json())
     .then((data) => {
       const onlyOneCategory = data;
+  
 
       categoryCardShow(onlyOneCategory.plants);
     })
@@ -56,7 +66,6 @@ const categoryCard = (Catid) => {
 const categoryCardShow = (plants) => {
   plantContainer.innerHTML = "";
   plants.forEach((plant) => {
-    console.log(plant);
     plantContainer.innerHTML += `  
    <div
               id="${plant.id}" class="w-full md:max-w-xs bg-white rounded-2xl shadow-md overflow-hidden p-4"
@@ -75,7 +84,7 @@ const categoryCardShow = (plants) => {
               <!-- Body -->
               <div class="mt-4 space-y-2">
                 <!-- Title -->
-                <h1 class="text-sm font-bold text-gray-800">${plant.category}</h1>
+                <h1 class="title text-sm font-bold text-gray-800">${plant.category}</h1>
 
                 <!-- Description (2 lines only) -->
                 <p class="text-gray-600 text-xs line-clamp-2">
@@ -102,6 +111,7 @@ const categoryCardShow = (plants) => {
             </div>
     `;
   });
+  addTitleListeners()
 };
 const allplants = () => {
   fetch("https://openapi.programming-hero.com/api/plants")
@@ -109,11 +119,12 @@ const allplants = () => {
     .then((data) => {
       const plantsData = data;
       allplantsShow(plantsData.plants);
+      modaL.push({ type: "plants", data: data.plants });
     });
 };
 const allplantsShow = (plantsFn) => {
   plantsFn.forEach((singlePlant) => {
-    // console.log(singlePlant.id)
+   
     plantContainer.innerHTML += ` <div id="${singlePlant.id}"
               class="w-full md:max-w-xs bg-white rounded-2xl shadow-md overflow-hidden p-4"
             >
@@ -131,7 +142,7 @@ const allplantsShow = (plantsFn) => {
               <!-- Body -->
               <div class="mt-4 space-y-2">
                 <!-- Title -->
-                <h1 class="text-sm font-bold text-gray-800">${singlePlant.category}</h1>
+                <h1 class=" title text-sm font-bold text-gray-800">${singlePlant.category}</h1>
 
                 <!-- Description (2 lines only) -->
                 <p class="text-gray-600 text-xs line-clamp-2">
@@ -158,28 +169,8 @@ const allplantsShow = (plantsFn) => {
             </div>
     `;
   });
+  addTitleListeners();
 };
-// plantContainer.addEventListener("click", (e) => {
-//   if (e.target.innerText === "Add to Cart") {
-  
-//     bookMark(e);
-//   }
-// });
-// const bookMark = (e) => {
-// const title=e.target.parentNode.children[0].innerText;
-// const price=e.target.parentNode.children[2].children[1].children[0].innerText
-// const Id=e.target.parentNode.parentNode.id
-// console.log(Id)
-// bookMarks.push({
-//   title: title,
-//   id: Id,
-//   price: price
-
-// })
-// showBookMarks(bookMarks)
-
-// };
-
 plantContainer.addEventListener("click", (e) => {
   if (e.target.innerText === "Add to Cart") {
     bookMark(e);
@@ -188,39 +179,24 @@ plantContainer.addEventListener("click", (e) => {
 
 
 
-// const bookMark = (e) => {
-//   // কার্ড div খুঁজে বের করি
-//   const card = e.target.closest("div.w-full");
 
-//   // কার্ডের ভেতর থেকে title, price নিই
-//   const title = card.querySelector("h1").innerText;
-//   const priceText = card.querySelector(".text-gray-700").innerText; // যেমন "৳120"
 
-//   // শুধু সংখ্যাটা বের করি
-//   const price = priceText.replace("৳", "").trim();
-
-//   const Id = card.id || Math.random().toString(36).substr(2, 9); // যদি id না থাকে fallback id
-
-//   // বুকমার্কে যোগ করি
-//   bookMarks.push({ title, id: Id, price });
-//   showBookMarks(bookMarks);
-// };
 const bookMark = (e) => {
-  const card = e.target.closest("div[id]"); // কার্ড div খুঁজে বের করি
+  const card = e.target.closest("div[id]"); 
   const Id = card.id;
   const title = card.querySelector("h1").innerText;
   const priceText = card.querySelector(".text-gray-700").innerText;
   const price = parseFloat(priceText.replace("৳", "").trim());
 
-  // আগে থেকে আছে কি না চেক করি
+  
   const existing = bookMarks.find(item => item.id === Id);
 
   if (existing) {
-    // quantity এবং totalPrice update
+   
     existing.qty += 1;
     existing.totalPrice = existing.qty * existing.price;
   } else {
-    // নতুন প্রোডাক্ট push
+    
     bookMarks.push({
       id: Id,
       title: title,
@@ -232,29 +208,6 @@ const bookMark = (e) => {
 
   showBookMarks(bookMarks);
 };
-
-
-
-
-
-// const showBookMarks=(bookMarks)=>{
-//   cartContainer.innerHTML=""
-//   bookMarks.forEach(boo=>{
-//     cartContainer.innerHTML +=`<div class=" flex my-5 justify-between items-center p-2 bg-yellow-100 rounded-lg">
-//             <div class=" ">
-//             <h1 class="font-semibold">${boo.title}</h1>
-//             <p>৳<span>${Number(boo.price)} </span>x <span id="cart-count">1</span></p>
-//           </div>
-//           <div>
-//             <button class="font-semibold hover:border hover:border-1" onclick="deletedBookmark('${boo.id}')" >X</button>
-//           </div>
-//           </div>`
-          
-    
-//   })
-
-// }
-
 
 const showBookMarks = (bookmarks) => {
   cartContainer.innerHTML = "";
@@ -273,7 +226,7 @@ const showBookMarks = (bookmarks) => {
     `;
   });
 
-  // total
+
   const total = bookmarks.reduce((sum, item) => sum + item.totalPrice, 0);
   cartContainer.innerHTML += `
     <div class="mt-2 font-bold text-right">Total: ৳${total}</div>
@@ -282,18 +235,65 @@ const showBookMarks = (bookmarks) => {
 
 
 
-//  const deletedBookmark=(bookmarkId)=>{
-  
-//   const filterbookmarks=bookMarks.filter(book=>book.id !== bookmarkId)
-//   bookMarks = filterbookmarks
-//   showBookMarks(bookMarks)
 
-//  }
 
  const deletedBookmark = (bookmarkId) => {
   bookMarks = bookMarks.filter(item => item.id !== bookmarkId);
   showBookMarks(bookMarks);
 };
+
+
+
+
+const addTitleListeners = () => {
+  const allTitles = document.querySelectorAll(".title");
+
+  allTitles.forEach(titleEl => {
+    titleEl.addEventListener("click", () => {
+      const clickedTitle = titleEl.innerText;
+
+      
+      const plantsArray = modaL.find(item => item.type === "plants").data;
+
+    
+      const plant = plantsArray.find(p => p.category === clickedTitle);
+
+      if (!plant) return;
+
+    
+      modalContainer.innerHTML = `
+        <div class="space-y-5 ">
+          <h1 class="text-sm text-xl font-bold text-gray-800">${plant.name}</h1>
+
+          <!-- Image -->
+          <div class="w-full h-80 bg-gray-100 rounded-lg flex items-center justify-center">
+            <img
+              src="${plant.image}"
+              alt="${plant.category}"
+              class="object-cover rounded-lg h-full w-full"
+            />
+          </div>
+
+          <!-- Body -->
+          <div class="mt-4 space-y-2">
+            <p class="text-gray-600 text-xs ">
+              <span class="font-bold">Category Name:</span> ${plant.category}
+            </p>
+            <p class="text-gray-600 text-xs line-clamp-2">
+              <span class="font-bold">Price:</span> ৳${plant.price}
+            </p>
+            <p class="text-gray-600 text-xs ">
+              <span class="font-bold">Description:</span> ${plant.description}
+            </p>
+          </div>
+        </div>
+      `;
+
+      myModal5.showModal();
+    });
+  });
+};
+
 
 
 allplants();

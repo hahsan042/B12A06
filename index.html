@@ -23,10 +23,25 @@
   </div>
 </div>
 
+<!-- modal -->
+ <!-- Open the modal using ID.showModal() method -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-container" class="h-full">
+
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
 
     <header>
-      <nav class="pb-10 bg-[#15803D] flex flex-col items-center">
+      <nav class="pb-2 bg-[#15803D] flex flex-col items-center">
         <div
           class="space-y-5 md:flex md:justify-between md:items-center md:w-11/12 md:mx-auto text-white"
         >
@@ -73,9 +88,11 @@
             
           </div>
         </div>
-          <div id="plant-category" class=" grid grid-cols-1 gap-4 md:grid md:grid-cols-3 md:gap-5 md:w-8/12 md:mx-auto">
+        <div class="md:w-8/12">
+            <div id="plant-category" class="w-full grid grid-cols-1 gap-4 md:grid md:grid-cols-3 md:gap-5  md:mx-auto">
           
           </div>
+        </div>
         <div  class="right md:w-2/12 bg-white border-lg p-5">
           <h1 class="font-semibold text-lg mb-4 p-2">Your Cart</h1>
          <div id="cart-container">
@@ -161,10 +178,6 @@
           </button>
         </form>
       </div>
-      <button class="bg-white/30 backdrop-blur-md text-green-700 font-bold py-2 px-5 rounded-full border border-green-200 hover:bg-green-100 hover:text-green-900 transition duration-300">
-  Donate
-</button>
-
     </main>
     <footer class="bg-green-900 h-20 flex justify-center items-center">
       <p class="text-white text-center">
