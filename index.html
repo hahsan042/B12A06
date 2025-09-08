@@ -14,6 +14,17 @@
     <title>Green-Earth</title>
   </head>
   <body >
+ 
+<div id="loading" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-white/20 backdrop-blur-sm">
+  <div class="flex space-x-2">
+    <span class="w-4 h-4 bg-green-500 rounded-full animate-ping"></span>
+    <span class="w-4 h-4 bg-green-500 rounded-full animate-ping delay-200"></span>
+    <span class="w-4 h-4 bg-green-500 rounded-full animate-ping delay-400"></span>
+  </div>
+</div>
+
+
+
     <header>
       <nav class="pb-10 bg-[#15803D] flex flex-col items-center">
         <div
@@ -65,8 +76,11 @@
           <div id="plant-category" class=" grid grid-cols-1 gap-4 md:grid md:grid-cols-3 md:gap-5 md:w-8/12 md:mx-auto">
           
           </div>
-        <div class="right md:w-2/12 bg-white border-lg">
+        <div  class="right md:w-2/12 bg-white border-lg p-5">
           <h1 class="font-semibold text-lg mb-4 p-2">Your Cart</h1>
+         <div id="cart-container">
+           
+         </div>
         </div>
       </div>
       <div class="About-the-Campaign mt-20 md:w-8/12 md:mx-auto">
