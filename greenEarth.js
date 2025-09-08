@@ -50,7 +50,7 @@ const categoryCard = (Catid) => {
 
       categoryCardShow(onlyOneCategory.plants);
     })
-    .finally(() => hideLoading());
+    .finally(() => hideLoading())
 };
 
 const categoryCardShow = (plants) => {
@@ -94,7 +94,7 @@ const categoryCardShow = (plants) => {
 
                 <!-- Button -->
                 <button
-                 class=  "w-full mt-3 py-2 bg-green-700 text-white font-semibold rounded-full hover:bg-green-800 transition"
+                 class=  "w-full mt-3 py-2 btn bg-green-700 text-white font-semibold rounded-full hover:bg-green-800 transition"
                 >
                   Add to Cart
                 </button>
@@ -150,7 +150,7 @@ const allplantsShow = (plantsFn) => {
 
                 <!-- Button -->
                 <button id="btns"
-                  class="w-full mt-3 py-2 bg-green-700 text-white font-semibold rounded-full hover:bg-green-800 transition"
+                  class="w-full mt-3 py-2  btn bg-green-700 text-white font-semibold rounded-full hover:bg-green-800 transition"
                 >
                   Add to Cart
                 </button>
