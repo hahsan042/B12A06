@@ -35,7 +35,7 @@ const showCategory = (categories) => {
     
 
     categoryName.innerHTML += `
-  <p id="${cat.id}"class="cat-items w-full mt-3 p-2 hover:bg-green-700 hover:text-white rounded-lg transition">${cat.category_name}</p>  
+  <p id="${cat.id}"class="cat-items font-bold md:font-normal border-1 md:border-none  text-center md:text-left h-12 rounded-lg p-1 md:p-0 md:bg-none text-sm md:w-full md:mt-3 md:p-2 md:hover:bg-green-700 md:hover:text-white md:rounded-lg md:transition">${cat.category_name}</p>  
   `;
   });
   categoryName.addEventListener("click", (e) => {
@@ -173,6 +173,7 @@ const allplantsShow = (plantsFn) => {
 };
 plantContainer.addEventListener("click", (e) => {
   if (e.target.innerText === "Add to Cart") {
+    alert("your cart added  successfully")
     bookMark(e);
   }
 });
